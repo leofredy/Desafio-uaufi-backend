@@ -9,9 +9,9 @@ module.exports = {
             .where('password', password)
             .first()
         if(!ninja){
-            response.status(401).send({ error: 'Invalid credentials.' })
+            response.status(401).send()
         }
 
-        response.status(204).send()
+        response.json({id: ninja.id, name: ninja.name, email: ninja.email})
     },
 }

@@ -8,8 +8,9 @@ const DeleteNinjas = require('./controllers/DeleteNinjas')
 const UpdateNinja = require('./controllers/UpdateNinjas')
 
 routes.get('/profile', ListNinjas.Listagem)
+routes.get('/count', ListNinjas.Total)
 routes.post('/create', CreateNinjas.Create)
-routes.delete('/user/delete', DeleteNinjas.Delete)
+routes.delete('/delete', DeleteNinjas.Delete)
 routes.post('/', SessionNinjas.Login)
 routes.put('/user', UpdateNinja.Update)
 

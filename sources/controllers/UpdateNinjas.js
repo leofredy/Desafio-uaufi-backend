@@ -5,13 +5,14 @@ module.exports = {
     async Update(request, response){
 
         const spaceWords = /\s{2,}/g
-        let { name, email, password, newPassword } = request.body
-
+        let { name, email, password, newpassword } = request.body
+        console.log(name, email, password, newpassword)
+/*
         name = name.replace(spaceWords, ' ').trim()
         password = password.replace(spaceWords, ' ').trim()
-        newPassword = newPassword.replace(spaceWords, ' ').trim()
-
-        if (newPassword){
+        newpassword = newpassword.replace(spaceWords, ' ').trim()
+*/
+        if (newpassword){
 
             const ninja = await connection('ninja')
                 .where('email', email)
@@ -25,7 +26,7 @@ module.exports = {
                     .first()
                     .update({
                         name: name,
-                        password: newPassword
+                        password: newpassword
                     })
                     return response.status(201).json('Password and name changed successfully')
             }

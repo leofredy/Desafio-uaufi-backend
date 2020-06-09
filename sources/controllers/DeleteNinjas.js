@@ -4,11 +4,12 @@ module.exports = {
 
     async Delete(request, response){
         const ninja_id = request.headers.authorization
-        const { password } = request.body
 
+        if(!ninja_id){
+            return response.status(401).send()
+        }
         const account_ninja = await connection('ninja')
             .where('id', ninja_id)
-            .where('password', password)
             .select('*')
             .first()
         if(!account_ninja){
@@ -16,8 +17,7 @@ module.exports = {
         }
         await connection('ninja')
             .where('id', ninja_id)
-            .where('password', password)
             .delete()
         return response.status(204).send()
-    }
+    },
 }
